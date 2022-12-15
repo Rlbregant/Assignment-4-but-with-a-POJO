@@ -17,8 +17,7 @@ public class ReadDataFile {
 		List<Student> compSci = new ArrayList<>();
 		List<Student> stat = new ArrayList<>();
 		List<Student> apMth = new ArrayList<>();
-				
-		
+
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -46,8 +45,8 @@ public class ReadDataFile {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-		
+		}
+
 		// Print the number of students in each list (debug)
 //		System.out.println("Number of students in COMPSCI: " + compSci.size());
 //		System.out.println("Number of students in STAT: " + stat.size());
@@ -65,27 +64,27 @@ public class ReadDataFile {
 //		
 //		System.out.println(allStudents);
 		
+		//Combine the three course Lists into a single List
 		List<List<Student>> allStudents = List.of(compSci, stat, apMth);
-
+		
 		WriteCSVFile fileWriter = new WriteCSVFile();
-
+		// For loop to pull each course from the main List based on the number of elements in each List
 		for (int i = 0; i < allStudents.size(); i++) {
-		    List<Student> students = allStudents.get(i);
-		    fileWriter.writeCSVFile(students, "course" + (i + 1) + ".csv");
+			List<Student> students = allStudents.get(i);
+			fileWriter.writeCSVFile(students, "course" + (i + 1) + ".csv");
 		}
 
-		
 		// Create a list of arrays of strings
 //		List<String[]> students = new ArrayList<>();
 
 		// Iterate over the list of Student objects
 //		for (Student student : compSci) {
-			// Create an array of strings for the student
+		// Create an array of strings for the student
 //			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
 //					student.getGrade() };
-			// Add the array to the list
+		// Add the array to the list
 //			students.add(studentArray);
-			// Print the values for the student (debug)
+		// Print the values for the student (debug)
 //			System.out.println("ID: " + student.getId());
 //			System.out.println("Name: " + student.getName());
 //			System.out.println("Course: " + student.getCourse());
@@ -101,12 +100,12 @@ public class ReadDataFile {
 
 		// Iterate over the list of Student objects
 //		for (Student student : stat) {
-			// Create an array of strings for the student
+		// Create an array of strings for the student
 //			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
 //					student.getGrade() };
-			// Add the array to the list
+		// Add the array to the list
 //			students1.add(studentArray);
-			// Print the values for the student (debug)
+		// Print the values for the student (debug)
 //			System.out.println("ID: " + student.getId());
 //			System.out.println("Name: " + student.getName());
 //			System.out.println("Course: " + student.getCourse());
@@ -119,12 +118,12 @@ public class ReadDataFile {
 
 		// Iterate over the list of Student objects
 //		for (Student student : apMth) {
-			// Create an array of strings for the student
+		// Create an array of strings for the student
 //			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
 //					student.getGrade() };
-			// Add the array to the list
+		// Add the array to the list
 //			students2.add(studentArray);
-			// Print the values for the student (debug)
+		// Print the values for the student (debug)
 //			System.out.println("ID: " + student.getId());
 //			System.out.println("Name: " + student.getName());
 //			System.out.println("Course: " + student.getCourse());
