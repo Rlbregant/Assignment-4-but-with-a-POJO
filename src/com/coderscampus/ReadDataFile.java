@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/* 
+
+*/
+
 public class ReadDataFile {
 
 	public List<Student> readDateFile(String filename) {
@@ -13,7 +17,8 @@ public class ReadDataFile {
 		List<Student> compSci = new ArrayList<>();
 		List<Student> stat = new ArrayList<>();
 		List<Student> apMth = new ArrayList<>();
-
+				
+		
 		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -41,76 +46,93 @@ public class ReadDataFile {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-
+		}		
+		
 		// Print the number of students in each list (debug)
-		System.out.println("Number of students in COMPSCI: " + compSci.size());
-		System.out.println("Number of students in STAT: " + stat.size());
-		System.out.println("Number of students in APMTH: " + apMth.size());
+//		System.out.println("Number of students in COMPSCI: " + compSci.size());
+//		System.out.println("Number of students in STAT: " + stat.size());
+//		System.out.println("Number of students in APMTH: " + apMth.size());
 
 		// Sort the lists of students by grade in descending order
 		compSci.sort((s1, s2) -> s2.getGrade().compareTo(s1.getGrade()));
 		stat.sort((s1, s2) -> s2.getGrade().compareTo(s1.getGrade()));
 		apMth.sort((s1, s2) -> s2.getGrade().compareTo(s1.getGrade()));
 
-		// Create a list of arrays of strings
-		List<String[]> students = new ArrayList<>();
+//		List<Student> allStudents = new ArrayList<>();
+//		allStudents.addAll(compSci);
+//		allStudents.addAll(stat);
+//		allStudents.addAll(apMth);
+//		
+//		System.out.println(allStudents);
+		
+		List<List<Student>> allStudents = List.of(compSci, stat, apMth);
 
-		// Iterate over the list of Student objects
-		for (Student student : compSci) {
-			// Create an array of strings for the student
-			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
-					student.getGrade() };
-			// Add the array to the list
-			students.add(studentArray);
-			// Print the values for the student (debug)
-			System.out.println("ID: " + student.getId());
-			System.out.println("Name: " + student.getName());
-			System.out.println("Course: " + student.getCourse());
-			System.out.println("Grade: " + student.getGrade());
-		}
-
-		// Write the list of arrays to a CSV file
 		WriteCSVFile fileWriter = new WriteCSVFile();
-		fileWriter.writeCSVFile(students, "course1.csv");
 
+		for (int i = 0; i < allStudents.size(); i++) {
+		    List<Student> students = allStudents.get(i);
+		    fileWriter.writeCSVFile(students, "course" + (i + 1) + ".csv");
+		}
+
+		
 		// Create a list of arrays of strings
-		List<String[]> students1 = new ArrayList<>();
+//		List<String[]> students = new ArrayList<>();
 
 		// Iterate over the list of Student objects
-		for (Student student : stat) {
+//		for (Student student : compSci) {
 			// Create an array of strings for the student
-			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
-					student.getGrade() };
+//			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
+//					student.getGrade() };
 			// Add the array to the list
-			students1.add(studentArray);
+//			students.add(studentArray);
+			// Print the values for the student (debug)
+//			System.out.println("ID: " + student.getId());
+//			System.out.println("Name: " + student.getName());
+//			System.out.println("Course: " + student.getCourse());
+//			System.out.println("Grade: " + student.getGrade());
+//		}
 
-			System.out.println("ID: " + student.getId());
-			System.out.println("Name: " + student.getName());
-			System.out.println("Course: " + student.getCourse());
-			System.out.println("Grade: " + student.getGrade());
-
-		}
-		fileWriter.writeCSVFile(students1, "course2.csv");
-		// Create a list of arrays of strings
-		List<String[]> students2 = new ArrayList<>();
-
-		// Iterate over the list of Student objects
-		for (Student student : apMth) {
-			// Create an array of strings for the student
-			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
-					student.getGrade() };
-			// Add the array to the list
-			students2.add(studentArray);
-
-			System.out.println("ID: " + student.getId());
-			System.out.println("Name: " + student.getName());
-			System.out.println("Course: " + student.getCourse());
-			System.out.println("Grade: " + student.getGrade());
-		}
 		// Write the list of arrays to a CSV file
-		fileWriter.writeCSVFile(students2, "course3.csv");
+//		WriteCSVFile fileWriter = new WriteCSVFile();
+//		fileWriter.writeCSVFile(students, "course1.csv");
 
+		// Create a list of arrays of strings
+//		List<String[]> students1 = new ArrayList<>();
+
+		// Iterate over the list of Student objects
+//		for (Student student : stat) {
+			// Create an array of strings for the student
+//			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
+//					student.getGrade() };
+			// Add the array to the list
+//			students1.add(studentArray);
+			// Print the values for the student (debug)
+//			System.out.println("ID: " + student.getId());
+//			System.out.println("Name: " + student.getName());
+//			System.out.println("Course: " + student.getCourse());
+//			System.out.println("Grade: " + student.getGrade());
+
+//		}
+//		fileWriter.writeCSVFile(students1, "course2.csv");
+		// Create a list of arrays of strings
+//		List<String[]> students2 = new ArrayList<>();
+
+		// Iterate over the list of Student objects
+//		for (Student student : apMth) {
+			// Create an array of strings for the student
+//			String[] studentArray = new String[] { student.getId(), student.getName(), student.getCourse(),
+//					student.getGrade() };
+			// Add the array to the list
+//			students2.add(studentArray);
+			// Print the values for the student (debug)
+//			System.out.println("ID: " + student.getId());
+//			System.out.println("Name: " + student.getName());
+//			System.out.println("Course: " + student.getCourse());
+//			System.out.println("Grade: " + student.getGrade());
+//		}
+		// Write the list of arrays to a CSV file
+//		fileWriter.writeCSVFile(students2, "course3.csv");
+		// Not sure what else to return
 		return null;
 	}
 
