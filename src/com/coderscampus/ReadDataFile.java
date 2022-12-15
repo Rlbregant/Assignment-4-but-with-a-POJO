@@ -74,7 +74,7 @@ public class ReadDataFile {
 			fileWriter.writeCSVFile(students, "course" + (i + 1) + ".csv");
 		}
 
-		// Create a list of arrays of strings
+		// Create a list of arrays of strings 
 //		List<String[]> students = new ArrayList<>();
 
 		// Iterate over the list of Student objects
